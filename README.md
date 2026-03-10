@@ -12,15 +12,43 @@ A lightweight Bash-based monitoring system for Linux servers.
 - Docker container monitoring
 - Automated reporting
 
-## Automation
+## Architecture
 
-Scripts can be scheduled using cron for periodic monitoring.
+Linux Server
+     │
+     ▼
+Infrastructure Monitoring Scripts
+     │
+     ▼
+System Metrics Collection
+(CPU, Memory, Disk, Uptime)
+     │
+     ▼
+Service Health Checks
+(SSH, Nginx, Docker)
+     │
+     ▼
+Scheduled Automation
+via Cron Jobs
 
-Example:
+## Cron Automation
 
-*/5 * * * * scripts/infra_health_check.sh
+Run health check every 5 minutes:
 
-0 * * * * scripts/infra_email_report.sh
+*/5 * * * * /home/ubuntu/scripts/infra_health_check.sh >> /var/log/infra_health.log 2>&1
+
+Run email report every hour:
+
+0 * * * * /home/ubuntu/scripts/infra_email_report.sh
+
+## Example Output
+
+CPU Usage
+Memory Usage
+Disk Usage
+System Uptime
+Service Status
+Docker Container Status
 
 ## Requirements
 
@@ -29,6 +57,12 @@ Linux (Ubuntu recommended)
 mailutils (for email reports)
 
 Docker (optional for container monitoring)
+
+## Example Output
+
+Below is a sample output of the infrastructure monitoring script running on a Linux server.
+
+![Script Output](script-output.png)
 
 ## Usage
 
